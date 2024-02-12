@@ -44,7 +44,7 @@ class Profile(models.Model):
         ]
     )
 
-    image_url = models.ImageField(blank=True, null=True)
+    image_url = models.URLField(blank=True, null=True)
 
     age = models.PositiveSmallIntegerField(default=18, blank=True, null=True)
 

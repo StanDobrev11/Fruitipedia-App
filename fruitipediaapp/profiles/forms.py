@@ -6,6 +6,11 @@ from fruitipediaapp.profiles.models import Profile
 class BaseProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
+        fields = "__all__"
+
+
+class CreateProfileForm(BaseProfileForm):
+    class Meta(BaseProfileForm.Meta):
         fields = [
             'first_name',
             'last_name',
@@ -27,5 +32,18 @@ class BaseProfileForm(forms.ModelForm):
         }
 
 
-class CreateProfileForm(BaseProfileForm):
-    pass
+class EditProfileForm(BaseProfileForm):
+    class Meta(BaseProfileForm.Meta):
+        fields = [
+            'first_name',
+            'last_name',
+            'image_url',
+            'age'
+        ]
+
+        labels = {
+            'first_name': 'First Name',
+            'last_name': 'Last Name',
+            'image_url': 'Image URL',
+            'age': 'Age',
+        }
