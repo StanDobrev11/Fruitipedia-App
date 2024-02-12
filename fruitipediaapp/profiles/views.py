@@ -35,8 +35,7 @@ def create_profile(request):
 
 
 def edit_profile(request):
-
-    profile = Profile.objects.get(first_name=request.user.username)
+    profile = Profile.objects.get(email=request.user.email)
     edit_profile_form = EditProfileForm(request.POST or None, instance=profile)
 
     if request.method == 'POST':
@@ -51,7 +50,7 @@ def edit_profile(request):
 
 
 def delete_profile(request):
-    profile = Profile.objects.get(first_name=request.user.username)
+    profile = Profile.objects.get(email=request.user.email)
 
     if request.method == 'POST':
         request.user.delete()
@@ -64,9 +63,9 @@ def delete_profile(request):
 
 
 def details_profile(request):
-    profile = Profile.objects.get(first_name=request.user.username)
+    profile = Profile.objects.get(email=request.user.email)
 
     context = {
-        'profile':profile
+        'profile': profile
     }
     return render(request, 'profiles/details-profile.html', context)
